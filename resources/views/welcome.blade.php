@@ -8,6 +8,8 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
+        <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->

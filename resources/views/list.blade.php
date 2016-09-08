@@ -7,7 +7,8 @@
 					.toedit {opacity:0;}
 		</style>
 
-		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta name="csrf-token" content="{{ csrf_token() }}">	
+	
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	</head>
@@ -141,23 +142,24 @@
 			</script>
 
 			<script type="text/javascript">
+
+			
 				setInterval(function(){ 
+			//		var csrf_token="{{csrf_token()}}";
+
 						$(".container").load("list", function(){
-							$.ajaxSetup({
-                     		  headers: {
-                        		  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                      			  }
-                    	 	 });
+							
 
 							  $.ajax({
-							  	type : "POST",
-					            url : "{{url('unread')}}",					            					           
+							  	type : "get",
+					            url : "{{url('unread')}}",
+							//	_token: 'csrf_token',					            					           
 					         	 dataType : 'json',					   			
 					            success : function(data) {
 					            	
 					            		$.each(data,function(index,subcatObj){					            			
 					            //			$('#total').val(subcatObj.total);  
-					            			while(subcatObj.total != '0')
+					            			if(subcatObj.total != '0')
 					            			{
 					            				var yes	= confirm('You have '+subcatObj.total+' new messages');
 					            						if(yes){
@@ -183,7 +185,7 @@
 		                        headers: {
 		                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		                    }
-		                     });
+		                     });		
 			           $.ajax({  
 			                url:"{{url('s_update')}}",  
 			                method:"POST",  			                  			                

@@ -45,7 +45,7 @@ Route::post('/update',[
     'as' => 'delete'
     ]);
 
-Route::post('/unread',[
+Route::get('/unread',[
 	'uses'=>'ItemController@getUnread',
 	'as'=>'unread'
 	]);
