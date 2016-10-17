@@ -9,6 +9,8 @@ use Response;
 use App\Item;
 use Illuminate\Support\Facades\Redirect;
 use DB;
+use Event;
+use App\Events\SendMail;
 
 	class ItemController extends Controller
 		{
@@ -29,8 +31,11 @@ use DB;
 				$item= new Item();
 				$item->title = $request->input(['title']);
 				$item->description=$request->input(['description']);
+                $item->email = $request->input(['email']);
 				$item->status = '0';
 				$item->save();
+                Event::fire(new SendMail($item->id));
+               
 				return Response::json($item);
 			}
 
@@ -53,7 +58,7 @@ use DB;
 			{
 
 				$items=DB::select(DB::raw("SELECT count(*) as total from items where status =0"));
-				// $data=mysql_fetch_assoc($items);
+				
 				 return Response::json($items);
 			}		
 
@@ -62,5 +67,11 @@ use DB;
 				$items=DB::select(DB::raw("UPDATE items SET status=1 WHERE status=0"));
 				return Response::json($items);
 			}
+
+			public function savePost()
+			{
+				return view('savePost');
+			}
+
 
 		}

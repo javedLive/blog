@@ -20,6 +20,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\LastInsert' => [
         'App\Listeners\DataNotification',
         ],
+        
+        'App\Events\SendMail' => [
+            'App\Listeners\SendMailFired',
+        ],
     ];
 
     /**

@@ -19,6 +19,10 @@
                 <label > Description</label>
                 <input type="text" class="form-control" name = "description" placeholder="description">
               </div>
+            <div class="form-group">
+                <label > Mail</label>
+                <input type="mail" class="form-control" name = "email" placeholder="Mail">
+              </div>
 
         <button type="submit" class="btn btn-default">Submit</button>
         </form>

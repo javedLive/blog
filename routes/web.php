@@ -54,3 +54,9 @@ Route::post('/s_update',[
 	'uses'=>'ItemController@status_update',
 	'as'=>'s_update'
 	]);
+
+/* Single Page with Multiple Button */
+Route::get('/savePost',[
+	'uses'=>'ItemController@savePost',
+	'as'=>'savePost'
+	]);

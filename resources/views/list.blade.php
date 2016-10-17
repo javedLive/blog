@@ -23,7 +23,8 @@
 						<tr>
 							<td>Serial No</td>
 							<td>Title</td>
-							<td>Description</td>					
+							<td>Description</td>
+                            
 							<td>Action</td>
 						</tr>
 						</thead>
@@ -34,7 +35,8 @@
 							<tr>
 								<td>{{$i}}</td>
 							<td class="title" data-id1="{{$row->id}}" contenteditable>{{$row->title}}</td>  
-							<td class="description" data-id2="{{$row->id}}" contenteditable>{{$row->description}}</td>  
+							<td class="description" data-id2="{{$row->id}}" contenteditable>{{$row->description}}</td>
+                           
 							<td>	
 									<button type="button" onclick="deleteItem({{ $row->id }})" class="btn btn-danger">Delete</button>					
 							</td>
