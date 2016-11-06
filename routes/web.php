@@ -60,3 +60,15 @@ Route::get('/savePost',[
 	'uses'=>'ItemController@savePost',
 	'as'=>'savePost'
 	]);
+
+
+/* Tab bar Example*/
+Route::get('/testItem',[
+	'uses'=>'ItemController@gettestItem',
+	'as'=>'testItem'
+	]);
+
+Route::post('/showitems',[
+	'uses'=>'ItemController@showitems',
+	'as'=>'showitems'
+	]);

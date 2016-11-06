@@ -38,7 +38,7 @@
 							<td class="description" data-id2="{{$row->id}}" contenteditable>{{$row->description}}</td>
                            
 							<td>	
-									<button type="button" onclick="deleteItem({{ $row->id }})" class="btn btn-danger">Delete</button>					
+								<button type="button" onclick="deleteItem({{ $row->id }})" class="btn btn-danger">Delete</button>					
 							</td>
 
 							</tr>

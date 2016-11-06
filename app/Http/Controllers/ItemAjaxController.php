@@ -34,7 +34,9 @@ class ItemAjaxController extends Controller
     public function store(Request $request)
     {
         $create = Item::create($request->all());
+		
         return response()->json($create);
+
     }
 
     /**
@@ -47,6 +49,7 @@ class ItemAjaxController extends Controller
     public function update(Request $request, $id)
     {
         $edit = Item::find($id)->update($request->all());
+		
         return response()->json($edit);
     }
 
