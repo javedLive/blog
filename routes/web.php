@@ -72,3 +72,23 @@ Route::post('/showitems',[
 	'uses'=>'ItemController@showitems',
 	'as'=>'showitems'
 	]);
+
+Route::get('/saveApiData',[
+	'uses' => 'ItemController@saveApiData',
+	'as'=>'saveApiData'
+	]);
+
+Route::post('/register',[
+	'uses' =>'ItemController@getRegister',
+	'as'=>'register'
+	]);
+
+Route::get('/register',[
+	'uses'=>'ItemController@registerPage',
+	'as'=>'registerPage'
+	]);
+
+Route::get('/getUser',[
+	'uses'=>'ItemController@search',
+	'as'=>'getUser'
+	]);

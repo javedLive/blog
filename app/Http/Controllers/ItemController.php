@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use GuzzleHttp\Client;
 use App\Http\Requests;
 use Response;
 use App\Item;
@@ -13,13 +13,18 @@ use Event;
 use App\Events\SendMail;
 use App\Product;
 use App\Category;
+use App\User;
+use Carbon\Carbon;
 
 	class ItemController extends Controller
 		{
 
 			public function getItem()
 				{
-					return view('home');
+					$now = Carbon::now();
+					$month=$now->month;
+					$day=$now->toDateString();
+					return view('home',compact('now','month','day'));
 				}
 
 			public function itemList()
@@ -80,18 +85,43 @@ use App\Category;
   					return view('products', compact('categories'));
 				}
 
+			public function saveApiData()
+			    {
+			     $client = new Client();			   
+			       /*    $response= $client->get('http://localhost/atom/public/api/show');*/	
+			       $response= $client->get('http://revenuehits.com/publishers/report?pid=sohagjaved19&key=41bc2fca16c18fd08292686855f23685&from=2016-11-14');
+				//	dd(json_decode($response->getBody()));		
+			 
+				  //  $client = new Client(['base_uri' => 'http://localhost/atom/public/']);
+				   // $response = $client->get('api/show');
+				//   $response = $client->request('GET', 'api/show');
+				//    $response = $client->get('show');				 
+				   dd($response->getBody()->getContents());
+				
+				}
 
-	/*		public function gettestItem(){
-				$products = Product::all();
-				$categories = Category::all();
-				return view('products', compact('products', 'categories'));
-			//	return view('products', compact('categories'));
+				public function registerPage()
+				{
+						return view('modal_test');
+				}
+
+			public function getRegister (Request $request)
+			{
+				$user = new User();
+        		$user->name = $request->Input(['name']);
+       			$user->email = $request->Input(['email']);
+        		$user->password = bcrypt($request->Input(['password']));
+       			$user->save();       
 			}
 
-			
-			public function showitems(Request $request){
-				$id=$request->id;   
-				$products = DB::select(DB::raw("SELECT products.name FROM products INNER JOIN categories on categories.id = products.category_id WHERE products.category_id ='id'"));
-				return \Response::json($products);
-				}	*/
+			public function search(Request $request){
+				$name=$request->name;
+
+		        $result = DB::table('users')
+		            ->select(DB::raw("*"))
+		            ->where('name', '=', $name)
+		            ->get();
+       			return $result;
+			}
+
 		}

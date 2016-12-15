@@ -1,0 +1,4 @@
+<?php
+ /**
+ *	Course Helper  
+ */
