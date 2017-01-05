@@ -17,6 +17,8 @@
 			<div class="container">
 				<h3> List Of Courses </h3></br>
 
+
+
 				<div class="reloadTable">
 					<table class="table table-striped table-bordered dataTable" id="example">
 					 	<thead>
@@ -30,22 +32,22 @@
 						</thead>
 						<tbody>
 						<?php $i=1; ?>
-						@foreach($items as $row)
-						
-							<tr>
-								<td>{{$i}}</td>
-							<td class="title" data-id1="{{$row->id}}" contenteditable>{{$row->title}}</td>  
-							<td class="description" data-id2="{{$row->id}}" contenteditable>{{$row->description}}</td>
-                           
-							<td>	
-								<button type="button" onclick="deleteItem({{ $row->id }})" class="btn btn-danger">Delete</button>					
-							</td>
-
-							</tr>
-						
-						<?php $i++; ?>
+							@foreach($items as $row)
 							
-						@endforeach
+								<tr>
+									<td>{{$i}}</td>
+								<td class="title" data-id1="{{$row->id}}" contenteditable>{{$row->title}}</td>  
+								<td class="description" data-id2="{{$row->id}}" contenteditable>{{$row->description}}</td>
+							   
+								<td>	
+									<button type="button" onclick="deleteItem({{ $row->id }})" class="btn btn-danger">Delete</button>					
+								</td>
+
+								</tr>
+							
+							<?php $i++; ?>
+								
+							@endforeach
 						</tbody>
 					</table>
 				</div>

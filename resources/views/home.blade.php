@@ -9,6 +9,9 @@
     </head>
     <body>
         <div class="container">
+          {{$now}}</br>
+          {{$month}}
+          {{$day}}
         <form method="post" action="store" accept-charset="UTF-8" id="saveForm">
   <!--      <input name="_token" type="hidden" value="{{ csrf_token() }}"/>         -->
               <div class="form-group">

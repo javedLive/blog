@@ -5,6 +5,12 @@
     </head>
     <body onload="myFunction1()">
         <div class="container">
+
+                <form method="GET" action="{{route('getUser')}}">
+                    <input type="text" name="name">
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+                
             <div class="row">
             <form>
                 <div id="form">
