@@ -13,6 +13,8 @@ use Event;
 use App\Events\SendMail;
 use App\Product;
 use App\Category;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7;
 
 	class ItemController extends Controller
 		{
@@ -75,23 +77,24 @@ use App\Category;
 				return view('savePost');
 			}
 
-			public function gettestItem() {
+			public function gettestItem()
+			 {
   					$categories = Category::with('products')->get();
   					return view('products', compact('categories'));
-				}
+			 }
 
-
-	/*		public function gettestItem(){
-				$products = Product::all();
-				$categories = Category::all();
-				return view('products', compact('products', 'categories'));
-			//	return view('products', compact('categories'));
+			public function getApiValue()
+			{
+				$client = new Client();
+			//	$request = $client->request('GET', 'http://localhost/test/api/info');
+				$response = $client->request('GET', 'http://localhost/test/api/info');
+	//			echo $response->getReasonPhrase(); 
+				
+			//	echo $response->getStatusCode();
+				$stream =$response->getBody();
+				echo $stream->getContents();
+			//	$stream = $request->getBody();
+			//	$contents = $stream->getContents(); 
+			//	dd($contents);
 			}
-
-			
-			public function showitems(Request $request){
-				$id=$request->id;   
-				$products = DB::select(DB::raw("SELECT products.name FROM products INNER JOIN categories on categories.id = products.category_id WHERE products.category_id ='id'"));
-				return \Response::json($products);
-				}	*/
 		}

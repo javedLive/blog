@@ -72,3 +72,8 @@ Route::post('/showitems',[
 	'uses'=>'ItemController@showitems',
 	'as'=>'showitems'
 	]);
+
+Route::get('/showApiValue',[
+	'uses'=>'ItemController@getApiValue',
+	'as'=>'showApiValue'
+	]);
