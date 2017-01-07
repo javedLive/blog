@@ -77,6 +77,7 @@ Route::post('/showitems',[
 Route::get('/showApiValue',[
 	'uses'=>'ItemController@getApiValue',
 	'as'=>'showApiValue'
+	]);
 
 Route::get('/saveApiData',[
 	'uses' => 'ItemController@saveApiData',
@@ -93,7 +94,11 @@ Route::get('/register',[
 	'as'=>'registerPage'
 	]);
 
-Route::get('/getUser',[
+/*Route::get('/getUser',[
 	'uses'=>'ItemController@search',
+	'as'=>'getUser'
+	]);	*/
+Route::get('/getUser',[
+	'uses'=>'ItemController@getUser',
 	'as'=>'getUser'
 	]);

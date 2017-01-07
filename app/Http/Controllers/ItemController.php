@@ -14,7 +14,6 @@ use App\Events\SendMail;
 use App\Product;
 use App\Category;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
 use App\User;
 use Carbon\Carbon;
@@ -106,21 +105,30 @@ use Carbon\Carbon;
 			//	dd($contents);
 			}
 
-				}
+				
 
 			public function saveApiData()
-			    {
-			     $client = new Client();			   
-			       /*    $response= $client->get('http://localhost/atom/public/api/show');*/	
-			       $response= $client->get('http://revenuehits.com/publishers/report?pid=sohagjaved19&key=41bc2fca16c18fd08292686855f23685&from=2016-11-14');
-				//	dd(json_decode($response->getBody()));		
+			    {/*
+						##Get Data using Get Method
+						    $client = new Client();			   
+				 $response= $client->get('http://esb-bd.com/getUser');				 
+				 dd($response->getBody()->getContents());	
+			    */
 			 
-				  //  $client = new Client(['base_uri' => 'http://localhost/atom/public/']);
-				   // $response = $client->get('api/show');
-				//   $response = $client->request('GET', 'api/show');
-				//    $response = $client->get('show');				 
-				   dd($response->getBody()->getContents());
-				
+
+				  $body['title'] = "Body Title";
+    			  $body['content'] = "Body Description";
+
+    			  $client = new Client();
+			///	  $url = "http://esb-bd.com/getUser";
+
+			//	  $response = $client->createRequest("GET", $url, ['auth' => ['yusuf@yahoo.co','123456'],'body'=>$body]);
+
+				  $response =   $client->request('GET', 'http://esb-bd.com/getUser', ['auth' => ['yusuf@yahoo.co', '123456']]);
+				   dd($response->getBody()->getContents());	
+				//  $response = $client->send($response);
+
+				//  dd($response);			
 				}
 
 				public function registerPage()
@@ -145,6 +153,11 @@ use Carbon\Carbon;
 		            ->where('name', '=', $name)
 		            ->get();
        			return $result;
+			}
+
+			public function getUser(){
+				$user = User::all();
+				return $user;
 			}
 
 		}
