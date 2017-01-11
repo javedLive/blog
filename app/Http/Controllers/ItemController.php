@@ -13,7 +13,7 @@ use Event;
 use App\Events\SendMail;
 use App\Product;
 use App\Category;
-
+use App\Transaction;
 use GuzzleHttp\Psr7;
 use App\User;
 use Carbon\Carbon;
@@ -116,19 +116,17 @@ use Carbon\Carbon;
 			    */
 			 
 
-				  $body['title'] = "Body Title";
-    			  $body['content'] = "Body Description";
-
-    			  $client = new Client();
-			///	  $url = "http://esb-bd.com/getUser";
-
-			//	  $response = $client->createRequest("GET", $url, ['auth' => ['yusuf@yahoo.co','123456'],'body'=>$body]);
-
-				  $response =   $client->request('GET', 'http://esb-bd.com/getUser', ['auth' => ['yusuf@yahoo.co', '123456']]);
+				  $credentials = '7xgmE6pEO7In3vE6TZ49bxkjxpYpnj7VywHfaNbM1nuKDPsYjUNRIXLOi6rj';
+    			  $client = new Client();				  	
+				  $response = $client->get('http://esb-bd.com/getUser', [
+				  	'X-AUTH-TOKEN' => $credentials,
+				  	'auth' => [
+				  		'javed@yahoo.co',
+				  		 '123456'
+				  		 ]
+				  	]);
 				   dd($response->getBody()->getContents());	
-				//  $response = $client->send($response);
-
-				//  dd($response);			
+		
 				}
 
 				public function registerPage()
@@ -158,6 +156,31 @@ use Carbon\Carbon;
 			public function getUser(){
 				$user = User::all();
 				return $user;
+			}
+
+			public function getPaymentPage()
+			{
+				$total_amount = 800;
+				$tran_id = 'xuiojduhd';
+				return view('payment',compact('total_amount','tran_id'));
+			}
+
+			public function testsuccess()
+			{
+				return view('success');
+			}
+
+			
+			public function success(Request $request)
+			{
+				$transaction = new Transaction();
+				$transaction->val_id = $request->Input(['val_id']);
+				$transaction->tran_id = $request->Input(['tran_id']);
+				$transaction->amount = $request->Input(['amount']);
+				$transaction->card_type = $request->Input(['card_type']);
+				$transaction->store_amount = $request->Input(['store_amount']);
+				$transaction->save();
+				return redirect()->route('list');
 			}
 
 		}

@@ -102,3 +102,17 @@ Route::get('/getUser',[
 	'uses'=>'ItemController@getUser',
 	'as'=>'getUser'
 	]);
+Route::get('/payment',[
+	'uses'=>'ItemController@getPaymentPage',
+	'as'=>'payment'
+	]);
+/*
+Route::post('/success',[
+	'uses'=>'ItemController@testsuccess',
+	'as'=>'success'
+	]);		*/
+
+Route::post('/postsuccess',[
+	'uses'=>'ItemController@success',
+	'as'=>'postsuccess'
+	]);
