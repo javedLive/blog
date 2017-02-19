@@ -116,3 +116,19 @@ Route::post('/postsuccess',[
 	'uses'=>'ItemController@success',
 	'as'=>'postsuccess'
 	]);
+
+
+/* Where Key Testing ..Laravel */
+Route::get('wherekey', function () {
+    $bears = \DB::table('bears')
+    		->select(["id","name","type","danger_level"])
+    		->whereType("Black")
+    		->get();
+    dd($bears);
+});
+
+/* Components & Slot */
+
+Route::get('components', function () {
+    return view('components');
+});
